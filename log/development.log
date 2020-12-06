@@ -3362,3 +3362,36 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 106ms (Views: 96.6ms | ActiveRecord: 1.5ms)
 
 
+Started GET "/" for 106.72.148.0 at 2020-12-06 03:32:02 +0000
+Cannot render console from 106.72.148.0! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomesController#top as HTML
+  Rendering homes/top.html.erb within layouts/application
+  Rendered homes/top.html.erb within layouts/application (4.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_header.html.erb:10
+  Rendered layouts/_header.html.erb (36.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 6444ms (Views: 6426.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&search%5Bcontent%5D=testuser1&search%5Bmodel%5D=user&search%5Bhow%5D=match&commit=%E6%A4%9C%E7%B4%A2" for 106.72.148.0 at 2020-12-06 03:32:16 +0000
+Cannot render console from 106.72.148.0! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SearchController#search as HTML
+  Parameters: {"utf8"=>"✓", "search"=>{"content"=>"testuser1", "model"=>"user", "how"=>"match"}, "commit"=>"検索"}
+  Rendering search/search.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ?[0m  [["name", "testuser1"]]
+  ↳ app/views/search/search.html.erb:2
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/search/search.html.erb:19
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/search/search.html.erb:20
+  Rendered search/search.html.erb within layouts/application (41.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_header.html.erb:10
+  Rendered layouts/_header.html.erb (5.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 100ms (Views: 98.3ms | ActiveRecord: 0.8ms)
+
+
